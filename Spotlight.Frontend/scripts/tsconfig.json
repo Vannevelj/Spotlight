@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "module": "es2015",
+    "target": "es6",
+    "lib": [ "es6", "dom" ],
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "alwaysStrict": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true
+  },
+  "compileOnSave": true,
+  "exclude": [
+    "node_modules",
+    "../wwwroot"
+  ],
+  "files": [
+    "Index.ts",
+    "Recorder.ts"
+  ]
+}
+
