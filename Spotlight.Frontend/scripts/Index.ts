@@ -2,11 +2,11 @@
 
 export class Index {
     private readonly recorder: Recorder;
-    private readonly targetHtmlElement: HTMLElement;
+    private readonly targetHtmlElement: HTMLMediaElement;
 
-    private mediaStream: MediaStream | undefined;
+    private mediaStream: MediaStream | undefined = undefined;
 
-    constructor(targetHtmlElement: HTMLElement) {
+    constructor(targetHtmlElement: HTMLMediaElement) {
         this.recorder = new Recorder();
         this.targetHtmlElement = targetHtmlElement;
     }
@@ -17,9 +17,10 @@ export class Index {
             .catch(this.handleMediaStreamError);
     }
 
-    private onFulfilled(value: MediaStream): void {
+    // Needs arrow syntax to properly reference this
+    private onFulfilled = (value: MediaStream) => {
         this.mediaStream = value;
-        this.targetHtmlElement.setAttribute('srcObject', URL.createObjectURL(value));
+        this.targetHtmlElement.srcObject = value;
     }
 
     private onRejected(reason: any): void {

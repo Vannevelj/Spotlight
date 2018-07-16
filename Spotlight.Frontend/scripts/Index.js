@@ -1,6 +1,12 @@
 import { Recorder } from './Recorder.js';
 export class Index {
     constructor(targetHtmlElement) {
+        this.mediaStream = undefined;
+        // Needs arrow syntax to properly reference this
+        this.onFulfilled = (value) => {
+            this.mediaStream = value;
+            this.targetHtmlElement.srcObject = value;
+        };
         this.recorder = new Recorder();
         this.targetHtmlElement = targetHtmlElement;
     }
@@ -8,10 +14,6 @@ export class Index {
         this.recorder.getUserMediaStream()
             .then(this.onFulfilled, this.onRejected)
             .catch(this.handleMediaStreamError);
-    }
-    onFulfilled(value) {
-        this.mediaStream = value;
-        this.targetHtmlElement.setAttribute('srcObject', URL.createObjectURL(value));
     }
     onRejected(reason) {
         console.log(reason);
