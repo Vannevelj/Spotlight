@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "module": "es2015",
+    "module": "es6",
     "target": "es6",
-    "lib": [ "es6", "dom" ],
+    "lib": [ "dom", "es6" ],
     "sourceMap": true,
     "noImplicitAny": true,
     "noEmitOnError": true,

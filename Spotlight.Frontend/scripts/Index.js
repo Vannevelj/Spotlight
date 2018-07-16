@@ -6,6 +6,7 @@ export class Index {
         this.onFulfilled = (value) => {
             this.mediaStream = value;
             this.targetHtmlElement.srcObject = value;
+            this.startStreaming();
         };
         this.recorder = new Recorder();
         this.targetHtmlElement = targetHtmlElement;
@@ -26,8 +27,10 @@ export class Index {
             console.log('No mediastream connected');
             return;
         }
-        this.recorder.record(this.mediaStream, () => {
-            // stream data
+        // Type is BlobEvent but unsupported by TypeScript
+        this.recorder.record(this.mediaStream, (e) => {
+            debugger;
+            console.log(e);
         });
     }
 }

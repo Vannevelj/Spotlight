@@ -21,6 +21,8 @@ export class Index {
     private onFulfilled = (value: MediaStream) => {
         this.mediaStream = value;
         this.targetHtmlElement.srcObject = value;
+
+        this.startStreaming();
     }
 
     private onRejected(reason: any): void {
@@ -37,8 +39,9 @@ export class Index {
             return;
         }
 
-        this.recorder.record(this.mediaStream, () => {
-            // stream data
+        this.recorder.record(this.mediaStream, (e: any) => {
+            debugger;
+            console.log(e);
         });
     }
 }

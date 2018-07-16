@@ -1,3 +1,5 @@
+declare const MediaRecorder: any; // unsupported by typescript
+
 export class Recorder {
     public getUserMediaStream(): Promise<MediaStream> {
         return navigator.mediaDevices.getUserMedia({
@@ -7,8 +9,13 @@ export class Recorder {
     }
 
     public record(mediaStream: MediaStream, onDataAvailableFunc: Function): void {
-        console.log(mediaStream);
-        console.log(onDataAvailableFunc);
-        throw new Error('not implemented');
-    }  
+        const options = {
+            mimeType: 'video/webm'
+        }
+
+        const mediaRecorder = new MediaRecorder(mediaStream, options);
+        mediaRecorder.ondataavailable = onDataAvailableFunc;
+
+        mediaRecorder.start(4000);
+    }
 }

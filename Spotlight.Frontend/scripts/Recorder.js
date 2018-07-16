@@ -6,9 +6,12 @@ export class Recorder {
         });
     }
     record(mediaStream, onDataAvailableFunc) {
-        console.log(mediaStream);
-        console.log(onDataAvailableFunc);
-        throw new Error('not implemented');
+        const options = {
+            mimeType: 'video/webm'
+        };
+        const mediaRecorder = new MediaRecorder(mediaStream, options);
+        mediaRecorder.ondataavailable = onDataAvailableFunc;
+        mediaRecorder.start(4000);
     }
 }
 //# sourceMappingURL=Recorder.js.map
